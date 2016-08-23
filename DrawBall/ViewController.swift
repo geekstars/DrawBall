@@ -15,12 +15,18 @@ class ViewController: UIViewController {
     var magin:CGFloat = 30
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(magin)")
     }
     var sobong = 0
     @IBAction func action_draw(sender: UIButton) {
-        sobong = Int(tv_sobong.text!)!
-        drawball()
+        if sobong > 0
+        {
+            sobong = Int(tv_sobong.text!)!
+            drawball()
+        }
+        else
+        {
+            print("Giá trị không hợp lệ")
+        }
     }
     func drawball () {
         for subview in view.subviews{
