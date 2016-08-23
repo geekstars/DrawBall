@@ -10,16 +10,43 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tv_sobong: UITextField!
+    
+    var magin:CGFloat = 30
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        print("\(magin)")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    var sobong = 0
+    @IBAction func action_draw(sender: UIButton) {
+        sobong = Int(tv_sobong.text!)!
+        drawball()
     }
+    func drawball () {
+        for subview in view.subviews{
+            
+            if subview.isKindOfClass(UIImageView) {
+                subview.removeFromSuperview()
+            }
+            
+        }
+        for indexhang in 0...sobong {
+            for indexcot in 0...sobong {
+                let image = UIImage(named: "ball")
+                let ball = UIImageView(image: image)
+                ball.center = CGPointMake(magin + CGFloat(indexhang)*spacehang(), 70 + CGFloat(indexcot)*spacecot())
+                self.view.addSubview(ball)
+            }
+        }
 
-
+    }
+    func spacehang() -> CGFloat {
+        let space = ((self.view.bounds.size.width - 2*magin)/(CGFloat(sobong-1)))
+        return space
+    }
+    func spacecot() -> CGFloat {
+        let space = ((self.view.bounds.size.height - 2*70)/(CGFloat(sobong-1)))
+        return space
+    }
 }
 
