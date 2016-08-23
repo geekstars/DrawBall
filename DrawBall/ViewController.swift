@@ -18,14 +18,21 @@ class ViewController: UIViewController {
     }
     var sobong = 0
     @IBAction func action_draw(sender: UIButton) {
+        sobong = Int(tv_sobong.text!)!
         if sobong > 0
         {
-            sobong = Int(tv_sobong.text!)!
             drawball()
         }
         else
         {
             print("Giá trị không hợp lệ")
+            for subview in view.subviews{
+                
+                if subview.isKindOfClass(UIImageView) {
+                    subview.removeFromSuperview()
+                }
+                
+            }
         }
     }
     func drawball () {
